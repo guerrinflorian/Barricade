@@ -1,0 +1,113 @@
+.victory-screen {
+  height: 100%;
+  height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.victory-card {
+  background: var(--surface);
+  border: 1px solid var(--border-2);
+  border-radius: 24px;
+  padding: 48px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  max-width: 360px;
+  width: 100%;
+  animation: v-appear 0.5s cubic-bezier(.34,1.56,.64,1);
+}
+
+@keyframes v-appear {
+  from { transform: scale(0.78) translateY(20px); opacity: 0; }
+  to   { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+.victory-confetti {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.confetti-piece {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  background: var(--c-color);
+  border-radius: 2px;
+  left: var(--c-x);
+  top: -10px;
+  animation: c-fall 2.2s ease-in var(--c-delay) infinite;
+}
+
+@keyframes c-fall {
+  0%   { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(480px) rotate(720deg); opacity: 0; }
+}
+
+.victory-pawn {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  background: var(--pawn-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: rgba(0,0,0,0.85);
+  animation: v-pulse 1.6s ease-in-out infinite;
+  position: relative;
+  z-index: 1;
+  margin-bottom: 4px;
+}
+
+@keyframes v-pulse {
+  0%,100% { box-shadow: 0 0 24px color-mix(in srgb, var(--pawn-color) 45%, transparent); }
+  50%      { box-shadow: 0 0 48px color-mix(in srgb, var(--pawn-color) 65%, transparent); }
+}
+
+.victory-winner {
+  font-size: 1.8rem;
+  font-weight: 800;
+  position: relative;
+  z-index: 1;
+}
+
+.victory-sub {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  position: relative;
+  z-index: 1;
+  margin-top: -4px;
+}
+
+.victory-replay-btn {
+  background: var(--accent);
+  color: #000;
+  border: none;
+  border-radius: 12px;
+  padding: 0 40px;
+  height: 50px;
+  font-family: var(--font);
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.15s;
+  text-transform: uppercase;
+  outline: none;
+  margin-top: 6px;
+  touch-action: manipulation;
+  position: relative;
+  z-index: 1;
+}
+
+.victory-replay-btn:hover { opacity: 0.9; transform: translateY(-1px); }

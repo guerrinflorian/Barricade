@@ -1,0 +1,187 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&display=swap');
+
+:root {
+  --font: 'Syne', system-ui, sans-serif;
+  --bg: #0b0b0e;
+  --surface: #141418;
+  --surface-2: #1a1a1f;
+  --surface-3: #202028;
+  --border: rgba(255,255,255,0.07);
+  --border-2: rgba(255,255,255,0.13);
+  --text-primary: #eeeef5;
+  --text-secondary: #7777a0;
+  --text-muted: #44445a;
+  --accent: #c8ff57;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { height: 100%; }
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  height: 100%;
+  overflow: hidden;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+#root {
+  height: 100%;
+  height: 100dvh;
+}
+
+/* ── GAME SCREEN ── */
+.game-screen {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  height: 100dvh;
+  padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px) env(safe-area-inset-bottom, 8px) env(safe-area-inset-left, 0px);
+}
+
+/* Top bar: player chips */
+.game-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px 0;
+  flex-shrink: 0;
+  gap: 8px;
+}
+
+.player-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 24px;
+  border: 1.5px solid transparent;
+  background: var(--surface);
+  transition: all 0.25s;
+  flex: 1;
+  min-width: 0;
+  cursor: default;
+}
+
+.player-chip.active {
+  border-color: var(--chip-color);
+  background: color-mix(in srgb, var(--chip-color) 10%, var(--surface));
+  box-shadow: 0 0 16px color-mix(in srgb, var(--chip-color) 20%, transparent);
+}
+
+.player-chip.reverse { flex-direction: row-reverse; }
+
+.chip-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--chip-color);
+  flex-shrink: 0;
+  transition: box-shadow 0.25s;
+}
+.player-chip.active .chip-dot {
+  box-shadow: 0 0 8px var(--chip-color);
+}
+
+.chip-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+}
+.player-chip.reverse .chip-info { align-items: flex-end; }
+
+.chip-name {
+  font-size: 0.82rem;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--text-primary);
+}
+
+.chip-goal {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.game-logo-center {
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  color: var(--text-muted);
+  flex-shrink: 0;
+  padding: 0 4px;
+}
+
+/* Board area fills remaining space */
+.game-board-area {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 8px 4px;
+}
+
+/* Bottom bar: mode toggle */
+.game-bottombar {
+  flex-shrink: 0;
+  padding: 4px 12px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.turn-label {
+  text-align: center;
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.04em;
+}
+.turn-label strong { color: var(--text-primary); }
+
+.mode-toggle {
+  display: flex;
+  background: var(--surface);
+  border: 1.5px solid var(--border-2);
+  border-radius: 16px;
+  padding: 4px;
+  gap: 4px;
+  height: 54px;
+}
+
+.mode-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  border: none;
+  border-radius: 12px;
+  background: transparent;
+  font-family: var(--font);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s;
+  touch-action: manipulation;
+  outline: none;
+  letter-spacing: 0.03em;
+}
+
+.mode-btn:hover { color: var(--text-primary); background: var(--surface-2); }
+
+.mode-btn.mode-active {
+  background: color-mix(in srgb, var(--active-color) 18%, transparent);
+  color: var(--active-color);
+  box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--active-color) 60%, transparent);
+}
+
+.mode-btn-icon { font-size: 1rem; }
